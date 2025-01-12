@@ -163,6 +163,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --no-install-recomm
     okular-extra-backends \
     plasma-dataengines-addons \
     plasma-discover \
+    plasma-pa \
     plasma-runners-addons \
     plasma-wallpapers-addons \
     plasma-widgets-addons \
