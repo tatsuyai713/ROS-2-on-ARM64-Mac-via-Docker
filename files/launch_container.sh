@@ -2,8 +2,8 @@
 SCRIPT_DIR=$(cd $(dirname "$0") && pwd)
 cd $SCRIPT_DIR
 
-NAME_IMAGE="development-container-for-ros-2-on-m1-2-mac_for_${USER}"
-CONTAINER_NAME="development-container-for-ros-2-on-m1-2-mac_for_${USER}_container"
+NAME_IMAGE="development-container-for-ros-2-on-m1-2-mac-x86_64_for_${USER}"
+CONTAINER_NAME="development-container-for-ros-2-on-m1-2-mac-x86_64_for_${USER}_container"
 
 if [ ! "$(docker image ls -q ${NAME_IMAGE})" ]; then
     if [ ! $# -ne 1 ]; then

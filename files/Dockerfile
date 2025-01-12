@@ -1,4 +1,4 @@
-FROM ghcr.io/tatsuyai713/development-container-for-ros-2-on-m1-2-mac:v22.04
+FROM --platform=linux/amd64 ghcr.io/tatsuyai713/development-container-for-ros-2-on-m1-2-mac:v22.04-x86_64
 
 ARG UID=9001
 ARG GID=9001
