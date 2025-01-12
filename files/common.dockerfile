@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:24.04
 
 RUN echo 'path-include=/usr/share/locale/ja/LC_MESSAGES/*.mo' > /etc/dpkg/dpkg.cfg.d/includes \
     && apt update \
@@ -219,11 +219,11 @@ RUN { \
 RUN apt -y update \
     && apt install -y firefox
 
-# install ROS2 humble
+# install ROS2 jazzy
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 RUN apt update && apt install -y --no-install-recommends \
-    ros-humble-desktop-full \
+    ros-jazzy-desktop-full \
     ros-dev-tools \
     && \
     apt clean && \
@@ -251,7 +251,7 @@ RUN apt update && apt install -y libtool libpulse-dev git autoconf pkg-config li
 
 RUN git clone --recursive https://github.com/pulseaudio/pulseaudio.git && \
     cd pulseaudio && \
-    git checkout tags/v15.99.1 -b v15.99.1 && \
+    git checkout tags/v16.1 -b v16.1 && \
     meson build && \
     ninja -C build && \
     cd ../ && \
