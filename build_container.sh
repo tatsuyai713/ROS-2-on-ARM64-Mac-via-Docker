@@ -4,7 +4,7 @@ cd $SCRIPT_DIR
 pwd
 cd ./files
 
-NAME_IMAGE='development-container-for-ros-2-on-m1-2-mac_for_${USER}'
+NAME_IMAGE="development-container-for-ros-2-on-m1-2-mac_for_${USER}"
 
 if [ $# -ne 1 ]; then
 	echo "Please select keyboard type. (JP or US)"

@@ -4,9 +4,11 @@ SCRIPT_DIR=$(cd $(dirname "$0") && pwd)
 
 cd $SCRIPT_DIR/files
 
-if [ "$(docker ps -al | grep development-container-for-ros-2-on-m1-2-mac_for_${USER}_container)" ]; then
+CONTAINER_NAME="development-container-for-ros-2-on-m1-2-mac_for_${USER}_container"
+
+if [ "$(docker ps -al | grep ${CONTAINER_NAME})" ]; then
 	echo "docker container restarting..."
-	CONTAINER_ID=$(docker ps -a -f name=development-container-for-ros-2-on-m1-2-mac_for_${USER}_container --format "{{.ID}}")
+	CONTAINER_ID=$(docker ps -a -f name=${CONTAINER_NAME} --format "{{.ID}}")
 
 	sudo rm -rf /tmp/.docker.xauth
 	XAUTH=/tmp/.docker.xauth

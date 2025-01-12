@@ -53,7 +53,6 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --no-install-recomm
     python3 \
     python3-cups \
     python3-numpy \
-    mlocate \
     nano \
     vim \
     htop \
@@ -152,7 +151,6 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --no-install-recomm
     kleopatra \
     kmail \
     kmenuedit \
-    kmix \
     knotes \
     kontact \
     kopete \
@@ -165,6 +163,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --no-install-recomm
     okular-extra-backends \
     plasma-dataengines-addons \
     plasma-discover \
+    plasma-pa \
     plasma-runners-addons \
     plasma-wallpapers-addons \
     plasma-widgets-addons \
@@ -220,11 +219,11 @@ RUN { \
 RUN apt -y update \
     && apt install -y firefox
 
-# install ROS2 Humble
+# install ROS2 humble
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 RUN apt update && apt install -y --no-install-recommends \
-    ros-humble-desktop \
+    ros-humble-desktop-full \
     ros-dev-tools \
     && \
     apt clean && \
@@ -248,11 +247,11 @@ RUN apt update && apt install -y --no-install-recommends \
 RUN echo 'export XDG_RUNTIME_DIR=/tmp/runtime-$(id -un)' >> /etc/profile
 
 # Pulseaudio
-RUN apt update && apt install -y libtool libpulse-dev git autoconf pkg-config libssl-dev libpam0g-dev libx11-dev libxfixes-dev libxrandr-dev nasm xsltproc flex bison libxml2-dev dpkg-dev libcap-dev meson ninja-build libsndfile1-dev libtdb-dev check doxygen libxml-parser-perl
+RUN apt update && apt install -y libtool libpulse-dev git autoconf pkg-config libssl-dev libpam0g-dev libx11-dev libxfixes-dev libxrandr-dev nasm xsltproc flex bison libxml2-dev dpkg-dev libcap-dev meson ninja-build libsndfile1-dev libtdb-dev check doxygen libxml-parser-perl libxtst-dev gettext
 
 RUN git clone --recursive https://github.com/pulseaudio/pulseaudio.git && \
     cd pulseaudio && \
-    git checkout tags/v15.99.1 -b v15.99.1 && \
+    git checkout tags/v16.1 -b v16.1 && \
     meson build && \
     ninja -C build && \
     cd ../ && \
